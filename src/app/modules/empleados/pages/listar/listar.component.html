@@ -36,9 +36,9 @@
             <td> {{ item.name }} </td>
             <td> {{ item.age }} </td>
             <td> {{ item.position }} </td>
-            <td> <button class='btn btn-info'>Editar</button>
+            <td> <button class='btn btn-info' (click)="editarEmpleado( item.identification )">Editar</button>
                  &nbsp;&nbsp;
-                 <button class='btn btn-danger'>Eliminar</button>  
+                 <button class='btn btn-danger' (click)=" eliminarEmpleado( item.identification )">Eliminar</button>  
             </td>
         </tr>
     </tbody>

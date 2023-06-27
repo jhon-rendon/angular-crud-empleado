@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { EmpleadosService } from '../../services/empleados.service';
+
 
 @Component({
   selector: 'app-listar',
@@ -12,9 +13,10 @@ export class ListarComponent implements OnInit {
   public listadoEmpleados: any = [];
   public message:string = '';
   public busqueda:string = '';
+  public resp:any;
 
   constructor( private serviceEmpleados:EmpleadosService,
-              private route: ActivatedRoute
+              private router:Router
              ){
   }
 
@@ -75,6 +77,28 @@ export class ListarComponent implements OnInit {
       }
       
       });
+  }
+
+  eliminarEmpleado( id:string ){
+
+    this.serviceEmpleados.eliminarEmpleado( id )
+    .subscribe( resp => {
+         this.resp = resp;
+      },
+      (error) => {
+        console.log("Empleados error:",error);
+     },
+     ()=>{
+       if( this.resp.result === 'True'){
+        console.log('true')
+          this.listadoEmpleados = this.listadoEmpleados.filter( (emp :any) => emp.identification !== id )
+       }
+       this.message = this.resp.message
+     });
+  }
+
+  editarEmpleado( id:string ){
+    this.router.navigate(['editar/'+id]);//Redireccionar
   }
 
 

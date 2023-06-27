@@ -6,11 +6,13 @@ import { ListarComponent } from './pages/listar/listar.component';
 import { CrearComponent } from './pages/crear/crear.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EditarComponent } from './pages/editar/editar.component';
 
 @NgModule({
   declarations: [
     ListarComponent,
-    CrearComponent
+    CrearComponent,
+    EditarComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,59 @@
+<div style="width:50%">
+
+   
+
+    <div style="margin: 10px;">
+    
+        <div  class="error"
+            *ngIf="formulario.get('identificacion')?.invalid && ( formulario.controls['identificacion'].dirty || formulario.controls['identificacion'].touched )">
+            <div *ngIf="formulario.get('identificacion')?.errors?.['required']" class="error">La Identificación es Requerida.</div>
+          </div>
+    
+        <div  class="error"
+                *ngIf="formulario.get('nombre')?.errors?.['required']
+                       &&  ( formulario.controls['nombre'].dirty || formulario.controls['nombre'].touched ) ">
+            El Nombre es Requerido
+        </div>
+    </div>   
+      
+    
+    
+        <form [formGroup]="formulario"
+                autocomplete="off"
+                (ngSubmit)="crearOEditarEmpleado()">
+    
+                <div class="mb-3">
+                    <label for="" class="form-label">Identificación *</label>
+                    <input type="number" class="form-control" name="identificacion" formControlName="identificacion">
+                </div>
+    
+                <div class="mb-3">
+                    <label for="" class="form-label">Nombre * </label>
+                    <input type="text" class="form-control" name="nombre" formControlName="nombre">
+                </div>
+    
+                <div class="mb-3">
+                    <label for="" class="form-label">Edad</label>
+                    <input type="number" class="form-control" name="edad" formControlName="edad">
+                </div>
+    
+                <div class="mb-3">
+                    <label for="" class="form-label">Cargo</label>
+                    <input type="text" class="form-control" name="cargo" formControlName="cargo">
+                </div>
+                
+    
+                <button class="btn btn-info" type="submit" [disabled]="formulario.invalid" >Editar </button>
+                &nbsp;&nbsp;
+                <a class="btn btn-warning" routerLink="/listar">Cancelar </a>
+        
+        </form>
+    
+        <div *ngIf="message">
+            {{ message }}
+        </div>
+     
+    
+    </div>
+    
+       

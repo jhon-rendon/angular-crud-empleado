@@ -31,8 +31,18 @@ export class EmpleadosService {
   }
 
   getEmpleadoByIdentificacion( id:string ) {
-    console.log('busqueda '+id)
+    
     return this.http.get(`${baseUrl}/employee/${id}`,{ headers });
+  }
+
+  eliminarEmpleado( id:string ) {
+    
+    return this.http.delete(`${baseUrl}/employee/${id}`,{ headers });
+  }
+
+  editarEmpleado( id:string, datos: Empleado  ) {
+    
+    return this.http.put(`${baseUrl}/employee/${id}`,{ "employee": datos },{ headers });
   }
 
 }

@@ -50,7 +50,7 @@ export class CrearComponent {
             this.router.navigate(['listar']);//Redireccionar
           },
           (error) => {
-            console.log("Empleado, error:",error);
+            console.log("Empleado error:",error);
             this.message = 'Error al registrar el empleado'
          },
          ()=>{
