@@ -1,0 +1,40 @@
+<br>
+<h3>Listado de Empleados</h3>
+
+
+<div >
+    <label>Identificación</label>
+    <input type="text" placeholder="Buscar">
+
+     &nbsp;&nbsp;
+    <button class='btn btn-primary'>Buscar</button>
+     &nbsp;&nbsp;
+    <a class='btn btn-warning'  routerLink="/crear">Crear</a>
+</div>
+
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Identificación</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Edad</th>
+        <th scope="col">Cargo</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of listadoEmpleados.employees index as i;">
+        <tr>
+            <td> {{ i + 1  }} </td>
+            <td> {{ item.identification }} </td>
+            <td> {{ item.name }} </td>
+            <td> {{ item.age }} </td>
+            <td> {{ item.position }} </td>
+            <td> <button class='btn btn-info'>Editar</button>
+                 &nbsp;&nbsp;
+                 <button class='btn btn-danger'>Eliminar</button>  
+            </td>
+        </tr>
+    </tbody>
+  </table>

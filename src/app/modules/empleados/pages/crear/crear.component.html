@@ -1,0 +1,50 @@
+<div style="width:50%">
+
+    <!--<div *ngIf="formulario.get('nombre').errors? && formulario.nombre?.dirty" >
+        <div *ngIf="formulario.get('nombre').hasError('required')"  class="alert alert-danger">
+            El Nombre es Requerido
+        </div>  
+    </div>-->
+
+    <template *ngIf="formulario.controls['nombre'].invalid && 
+                (formulario.controls['nombre'].dirty || formulario.controls['nombre'].touched)" 
+                class="alert alert-danger">
+        El Nombre es Requerido
+    </template>
+
+  
+
+
+    <form [formGroup]="formulario"
+            autocomplete="off"
+            (ngSubmit)="crearEmpleado(formulario)">
+
+            <div class="mb-3">
+                <label for="" class="form-label">Identificación *</label>
+                <input type="number" class="form-control" name="identificacion" formControlName="identificacion">
+            </div>
+
+            <div class="mb-3">
+                <label for="" class="form-label">Nombre * </label>
+                <input type="text" class="form-control" name="nombre" formControlName="nombre">
+            </div>
+
+            <div class="mb-3">
+                <label for="" class="form-label">Edad</label>
+                <input type="number" class="form-control" name="edad">
+            </div>
+
+            <div class="mb-3">
+                <label for="" class="form-label">Cargo</label>
+                <input type="text" class="form-control" name="cargo">
+            </div>
+            
+
+            <button class="btn btn-info" type="submit" >Crear </button>
+            &nbsp;&nbsp;
+            <button class="btn btn-warning">Cancelar </button>
+    
+    </form>
+    {{ formulario.controls['nombre'].errors?.['required']}}
+
+</div>
