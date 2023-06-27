@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { EmpleadosService } from '../../services/empleados.service';
 
 @Component({
@@ -9,15 +10,35 @@ import { EmpleadosService } from '../../services/empleados.service';
 export class ListarComponent implements OnInit {
 
   public listadoEmpleados: any = [];
+  public messageRegistro:string = '';
 
-  constructor( private serviceEmpleados:EmpleadosService){
-    console.log('iniciando listado')
+  constructor( private serviceEmpleados:EmpleadosService,
+              private route: ActivatedRoute
+             ){
   }
 
   ngOnInit(): void {
+    this.listarEmpleados();
 
-     this.serviceEmpleados.getEmpleados() 
-     .subscribe( resp  => {
+    ///Obtener Mensaje del registro, del parametro enviado por url
+    /*this.route.queryParams
+      .subscribe(params => {
+        console.log(params); 
+        this.messageRegistro = params['message'];
+        console.log(this.messageRegistro);
+      }
+    );*/
+    if( localStorage.getItem("message")){
+      this.messageRegistro = localStorage.getItem("message") || '';
+      localStorage.removeItem('message');
+    }
+  }
+ 
+
+  listarEmpleados(){
+
+    this.serviceEmpleados.getEmpleados() 
+     .subscribe( resp => {
       this.listadoEmpleados = resp;
       console.log(resp)
       },

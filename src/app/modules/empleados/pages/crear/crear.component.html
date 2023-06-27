@@ -1,23 +1,26 @@
 <div style="width:50%">
 
-    <!--<div *ngIf="formulario.get('nombre').errors? && formulario.nombre?.dirty" >
-        <div *ngIf="formulario.get('nombre').hasError('required')"  class="alert alert-danger">
-            El Nombre es Requerido
-        </div>  
-    </div>-->
+   
 
-    <template *ngIf="formulario.controls['nombre'].invalid && 
-                (formulario.controls['nombre'].dirty || formulario.controls['nombre'].touched)" 
-                class="alert alert-danger">
+<div style="margin: 10px;">
+
+    <div  class="error"
+        *ngIf="formulario.get('identificacion')?.invalid && ( formulario.controls['identificacion'].dirty || formulario.controls['identificacion'].touched )">
+        <div *ngIf="formulario.get('identificacion')?.errors?.['required']" class="error">La Identificación es Requerida.</div>
+      </div>
+
+    <div  class="error"
+            *ngIf="formulario.get('nombre')?.errors?.['required']
+                   &&  ( formulario.controls['nombre'].dirty || formulario.controls['nombre'].touched ) ">
         El Nombre es Requerido
-    </template>
-
+    </div>
+</div>   
   
 
 
     <form [formGroup]="formulario"
             autocomplete="off"
-            (ngSubmit)="crearEmpleado(formulario)">
+            (ngSubmit)="crearEmpleado()">
 
             <div class="mb-3">
                 <label for="" class="form-label">Identificación *</label>
@@ -31,20 +34,26 @@
 
             <div class="mb-3">
                 <label for="" class="form-label">Edad</label>
-                <input type="number" class="form-control" name="edad">
+                <input type="number" class="form-control" name="edad" formControlName="edad">
             </div>
 
             <div class="mb-3">
                 <label for="" class="form-label">Cargo</label>
-                <input type="text" class="form-control" name="cargo">
+                <input type="text" class="form-control" name="cargo" formControlName="cargo">
             </div>
             
 
-            <button class="btn btn-info" type="submit" >Crear </button>
+            <button class="btn btn-info" type="submit" [disabled]="formulario.invalid" >Crear </button>
             &nbsp;&nbsp;
-            <button class="btn btn-warning">Cancelar </button>
+            <a class="btn btn-warning" routerLink="/listar">Cancelar </a>
     
     </form>
-    {{ formulario.controls['nombre'].errors?.['required']}}
+
+    <div *ngIf="message">
+        {{ message }}
+    </div>
+ 
 
 </div>
+
+   

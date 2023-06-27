@@ -13,7 +13,11 @@
 </div>
 
 
-<table class="table">
+<div *ngIf="messageRegistro" class="alert alert-success">
+  {{ messageRegistro }}
+</div>
+
+<table class="table" *ngIf="listadoEmpleados.result" >
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -24,7 +28,8 @@
         <th></th>
       </tr>
     </thead>
-    <tbody *ngFor="let item of listadoEmpleados.employees index as i;">
+    <tbody 
+           *ngFor="let item of listadoEmpleados.employees index as i;">
         <tr>
             <td> {{ i + 1  }} </td>
             <td> {{ item.identification }} </td>
