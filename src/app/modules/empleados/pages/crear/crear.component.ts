@@ -46,12 +46,11 @@ export class CrearComponent {
             
             this.message = 'El empleado se registro satisfactoriamente'
             console.log(resp)
-            //this.router.navigate(['listar'],{ queryParams: { message: this.message } });//Redireccionar
             localStorage.setItem("message", this.message);
             this.router.navigate(['listar']);//Redireccionar
           },
           (error) => {
-            console.log("Empleados error:",error);
+            console.log("Empleado, error:",error);
             this.message = 'Error al registrar el empleado'
          },
          ()=>{

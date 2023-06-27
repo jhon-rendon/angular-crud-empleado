@@ -4,20 +4,20 @@
 
 <div >
     <label>Identificación</label>
-    <input type="text" placeholder="Buscar">
+    <input type="text" placeholder="Buscar" name="buscar" [(ngModel)]="busqueda">
 
      &nbsp;&nbsp;
-    <button class='btn btn-primary'>Buscar</button>
+    <button class='btn btn-primary' (click)="buscarEmpleado()">Buscar</button>
      &nbsp;&nbsp;
     <a class='btn btn-warning'  routerLink="/crear">Crear</a>
 </div>
 
 
-<div *ngIf="messageRegistro" class="alert alert-success">
-  {{ messageRegistro }}
+<div *ngIf="message" class="alert alert-info">
+  {{ message }}
 </div>
 
-<table class="table" *ngIf="listadoEmpleados.result" >
+<table class="table" *ngIf="listadoEmpleados.length > 0" >
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -29,7 +29,7 @@
       </tr>
     </thead>
     <tbody 
-           *ngFor="let item of listadoEmpleados.employees index as i;">
+           *ngFor="let item of listadoEmpleados index as i;">
         <tr>
             <td> {{ i + 1  }} </td>
             <td> {{ item.identification }} </td>

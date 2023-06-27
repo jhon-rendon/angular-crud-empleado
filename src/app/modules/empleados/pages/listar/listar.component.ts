@@ -10,7 +10,8 @@ import { EmpleadosService } from '../../services/empleados.service';
 export class ListarComponent implements OnInit {
 
   public listadoEmpleados: any = [];
-  public messageRegistro:string = '';
+  public message:string = '';
+  public busqueda:string = '';
 
   constructor( private serviceEmpleados:EmpleadosService,
               private route: ActivatedRoute
@@ -20,18 +21,11 @@ export class ListarComponent implements OnInit {
   ngOnInit(): void {
     this.listarEmpleados();
 
-    ///Obtener Mensaje del registro, del parametro enviado por url
-    /*this.route.queryParams
-      .subscribe(params => {
-        console.log(params); 
-        this.messageRegistro = params['message'];
-        console.log(this.messageRegistro);
-      }
-    );*/
     if( localStorage.getItem("message")){
-      this.messageRegistro = localStorage.getItem("message") || '';
+      this.message = localStorage.getItem("message") || '';
       localStorage.removeItem('message');
     }
+
   }
  
 
@@ -46,6 +40,39 @@ export class ListarComponent implements OnInit {
         console.log("Empleados error:",error);
      },
      ()=>{
+      console.log(this.listadoEmpleados.employees)
+        this.listadoEmpleados = this.listadoEmpleados.employees
+      });
+  }
+
+  buscarEmpleado(){
+    this.message = '';
+
+    if( this.busqueda.length === 0 ){
+      this.listarEmpleados();
+      return;
+    }
+    this.serviceEmpleados.getEmpleadoByIdentificacion( this.busqueda )
+    .subscribe( resp => {
+        
+      this.listadoEmpleados = resp;
+      },
+      (error) => {
+        console.log("Empleados error:",error);
+     },
+     ()=>{
+      if( this.listadoEmpleados.result === 'True' ){
+        let empleado =  this.listadoEmpleados.employee
+        this.listadoEmpleados = [];
+        this.listadoEmpleados[0] = empleado
+        console.log('true')
+        console.log(this.listadoEmpleados)
+      }
+      else{
+        this.message = this.listadoEmpleados.message
+        this.listadoEmpleados[0] = {};
+        console.log('false')
+      }
       
       });
   }
