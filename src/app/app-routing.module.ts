@@ -8,7 +8,7 @@ const routes: Routes = [
     path:'',
     loadChildren:() => import('./modules/empleados/empleados.module').then( m => m.EmpleadosModule )
   },
-  /*{
+  {
     path:'404',
     component: ErrorPageComponent
   },
@@ -16,7 +16,7 @@ const routes: Routes = [
   {
     path: '**',
     redirectTo: '404'
-  }*/
+  }
   
 ];
 

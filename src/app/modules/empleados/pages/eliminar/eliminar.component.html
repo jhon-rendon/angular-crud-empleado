@@ -1,0 +1,38 @@
+<div style="width:50%" *ngIf="empleado.employee">
+
+   
+
+    
+                <div class="mb-3">
+                    <label for="" class="form-label">Identificación</label>
+                    <span> {{ empleado.employee.identification }}</span>
+                   
+                </div>
+    
+                <div class="mb-3">
+                    <label for="" class="form-label">Nombre  </label>
+                    <span> {{ empleado.employee.name }}</span>
+                   
+                </div>
+    
+                <div class="mb-3">
+                    <label for="" class="form-label">Edad</label>
+                    <span> {{ empleado.employee.age }}</span>
+                   
+                </div>
+    
+                <div class="mb-3">
+                    <label for="" class="form-label">Cargo</label>
+                    <span> {{ empleado.employee.position }}</span>
+                   
+                </div>
+                
+    
+                <button class="btn btn-info" (click)="eliminarEmpleado()">Eliminar </button>
+                &nbsp;&nbsp;
+                <a class="btn btn-warning" routerLink="/listar">Cancelar </a>
+
+    
+    </div>
+    
+       

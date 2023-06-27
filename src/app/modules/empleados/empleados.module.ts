@@ -7,12 +7,14 @@ import { CrearComponent } from './pages/crear/crear.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditarComponent } from './pages/editar/editar.component';
+import { EliminarComponent } from './pages/eliminar/eliminar.component';
 
 @NgModule({
   declarations: [
     ListarComponent,
     CrearComponent,
-    EditarComponent
+    EditarComponent,
+    EliminarComponent
   ],
   imports: [
     CommonModule,
